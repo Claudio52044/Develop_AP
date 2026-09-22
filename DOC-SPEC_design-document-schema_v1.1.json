@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/DOC-SPEC_design-document-schema_v1.1.json",
+  "title": "Design Document Specification",
+  "description": "Schema per la validazione di un documento di progettazione conforme alla specifica DOC-SPEC v1.1. Definisce la struttura obbligatoria (12 capitoli), i sottoparagrafi obbligatori (5.1-5.4, 8.1-8.3, 11.1-11.2) e le regole di numerazione (max 4 livelli, solo nei paragrafi consentiti).",
+  "version": "1.1",
+  "type": "object",
+  "required": [
+    "1_Abstract",
+    "2_Analysis_Purpose",
+    "3_Analysis_Scope",
+    "4_Analysis_Requirements",
+    "5_Analysis_Concepts_and_Methods",
+    "6_Analysis_Input",
+    "7_Analysis_Output",
+    "8_Analysis_Verification_Validation_Risk_Assessment",
+    "9_Experiences_and_Lessons_Learned",
+    "10_Recommendations",
+    "11_Appendices",
+    "12_Nomenclature"
+  ],
+  "properties": {
+    "1_Abstract": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R1: obbligatorio. Sintesi del documento."
+    },
+    "2_Analysis_Purpose": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R1: obbligatorio. Scopo dell'analisi."
+    },
+    "3_Analysis_Scope": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R1: obbligatorio. Perimetro dell'analisi."
+    },
+    "4_Analysis_Requirements": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R1: obbligatorio. Requisiti dell'analisi."
+    },
+    "5_Analysis_Concepts_and_Methods": {
+      "type": "object",
+      "required": [
+        "5.1_Technical_Background",
+        "5.2_Concepts_and_Methods_for_Simplified_or_Conceptual_Design",
+        "5.3_Concepts_and_Methods_for_Accurate_or_Detailed_Analysis",
+        "5.4_Method_Advice"
+      ],
+      "properties": {
+        "5.1_Technical_Background": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R1: obbligatorio."
+        },
+        "5.2_Concepts_and_Methods_for_Simplified_or_Conceptual_Design": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R1: obbligatorio."
+        },
+        "5.3_Concepts_and_Methods_for_Accurate_or_Detailed_Analysis": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R1: obbligatorio."
+        },
+        "5.4_Method_Advice": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R1: obbligatorio. R3: non ammette sottoparagrafi aggiunti."
+        }
+      },
+      "patternProperties": {
+        "^5\\.[1-3]\\.[0-9]+(\\.[0-9]+)?$": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R3: sottoparagrafi aggiunti a 5.1, 5.2, 5.3. Max 4 livelli (es. 5.1.1 oppure 5.1.1.1)."
+        }
+      },
+      "additionalProperties": false,
+      "description": "Capitolo 5 con i suoi 4 sottoparagrafi obbligatori (R1). R3: aggiunte consentite solo dentro 5.1, 5.2, 5.3."
+    },
+    "6_Analysis_Input": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R1: obbligatorio. R3: ammette sottoparagrafi aggiunti (es. 6.1, 6.1.1)."
+    },
+    "7_Analysis_Output": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R1: obbligatorio. R3: ammette sottoparagrafi aggiunti (es. 7.1, 7.1.1)."
+    },
+    "8_Analysis_Verification_Validation_Risk_Assessment": {
+      "type": "object",
+      "required": [
+        "8.1_Analysis_Verification",
+        "8.2_Analysis_Validation",
+        "8.3_Risk_Assessment"
+      ],
+      "properties": {
+        "8.1_Analysis_Verification": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R1: obbligatorio. R3: ammette sottoparagrafi aggiunti."
+        },
+        "8.2_Analysis_Validation": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R1: obbligatorio. R3: ammette sottoparagrafi aggiunti."
+        },
+        "8.3_Risk_Assessment": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R1: obbligatorio. R3: ammette sottoparagrafi aggiunti."
+        }
+      },
+      "patternProperties": {
+        "^8\\.[1-3]\\.[0-9]+(\\.[0-9]+)?$": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R3: sottoparagrafi aggiunti a 8.1, 8.2, 8.3. Max 4 livelli."
+        }
+      },
+      "additionalProperties": false,
+      "description": "Capitolo 8 con i suoi 3 sottoparagrafi obbligatori (R1). R3: aggiunte consentite solo dentro 8.1, 8.2, 8.3."
+    },
+    "9_Experiences_and_Lessons_Learned": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R1: obbligatorio."
+    },
+    "10_Recommendations": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R1: obbligatorio."
+    },
+    "11_Appendices": {
+      "type": "object",
+      "required": [
+        "11.1_Tools",
+        "11.2_Literature"
+      ],
+      "properties": {
+        "11.1_Tools": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R1: obbligatorio. R3: non ammette sottoparagrafi aggiunti."
+        },
+        "11.2_Literature": {
+          "type": "string",
+          "minLength": 1,
+          "description": "R1: obbligatorio. R3: non ammette sottoparagrafi aggiunti."
+        }
+      },
+      "additionalProperties": false,
+      "description": "Capitolo 11 con i suoi 2 sottoparagrafi obbligatori (R1). R3: nessuna aggiunta consentita."
+    },
+    "12_Nomenclature": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R1 e R5: obbligatorio. Contiene i termini non consolidati."
+    }
+  },
+  "patternProperties": {
+    "^6\\.[0-9]+(\\.[0-9]+)?(\\.[0-9]+)?$": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R3: sottoparagrafi aggiunti a 6 (es. 6.1, 6.1.1, 6.1.1.1). Max 4 livelli totali."
+    },
+    "^7\\.[0-9]+(\\.[0-9]+)?(\\.[0-9]+)?$": {
+      "type": "string",
+      "minLength": 1,
+      "description": "R3: sottoparagrafi aggiunti a 7 (es. 7.1, 7.1.1, 7.1.1.1). Max 4 livelli totali."
+    }
+  },
+  "additionalProperties": false,
+  "description": "R2: nessun paragrafo può essere eliminato o rinominato (il nome è la chiave). R4: nessun paragrafo di primo livello oltre 12 (additionalProperties: false lo impedisce). R3: le aggiunte sono consentite solo a 5.1, 5.2, 5.3, 6, 7, 8.1, 8.2, 8.3."
+}
